@@ -1,0 +1,82 @@
+:root {
+  /* Colors */
+  --bg-primary: #1a1a1a;
+  --bg-secondary: #252525;
+  --bg-tertiary: #2f2f2f;
+  --border-color: #333;
+  --text-primary: #eee;
+  --text-secondary: #888;
+
+  /* Component-specific */
+  --toolbar-bg: #1a1a1a;
+  --timeline-bg: #1e1e1e;
+  --track-bg: #252525;
+  --controls-bg: #1e1e1e;
+  --btn-bg: #3a3a3a;
+  --btn-hover-bg: #4a4a4a;
+
+  /* Accent colors */
+  --playhead-color: #ff4444;
+  --play-btn-bg: #2a6a2a;
+  --play-btn-hover-bg: #3a8a3a;
+  --mute-active: #cc4444;
+  --solo-active: #cccc44;
+  --time-color: #4aff4a;
+  --marker-color: #444;
+  --waveform-color: rgba(74, 158, 255, 0.2);
+
+  /* Fonts */
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 400;
+
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.daw-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background-color: var(--bg-primary);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #444;
+}

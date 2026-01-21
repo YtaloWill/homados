@@ -1,0 +1,44 @@
+.timeline {
+  background-color: var(--timeline-bg, #1a1a1a);
+  border-bottom: 1px solid var(--border-color, #333);
+  height: 40px;
+  overflow: hidden;
+}
+
+.timeline-header {
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.timeline-ruler {
+  position: relative;
+  height: 100%;
+  min-width: 100%;
+}
+
+.timeline-marker {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  border-left: 1px solid var(--marker-color, #444);
+}
+
+.timeline-marker-label {
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  font-size: 10px;
+  color: var(--text-secondary, #888);
+  user-select: none;
+}
+
+.timeline-playhead {
+  position: absolute;
+  top: 0;
+  width: 2px;
+  height: 100%;
+  background-color: var(--playhead-color, #ff4444);
+  pointer-events: none;
+  z-index: 10;
+}
