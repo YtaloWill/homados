@@ -51,3 +51,33 @@ fn command_name(param1: &str, param2: i32) -> String { ... }
 - `src-tauri/capabilities/default.json`: Window permissions for Tauri plugins
 - `tsconfig.json`: TypeScript strict mode enabled
 - `vite.config.ts`: Vite config with Tauri-specific settings (port 1420)
+
+## MIDI Support
+
+The application supports physical MIDI device input for recording and playback.
+
+### Backend Commands (Rust)
+
+| Command | Description |
+|---------|-------------|
+| `list_midi_devices` | Returns available MIDI input/output devices |
+| `connect_midi_input` | Connects a MIDI device to a track |
+| `disconnect_midi_input` | Disconnects MIDI device from a track |
+| `start_recording` | Starts recording MIDI notes on a track |
+| `stop_recording` | Stops recording and returns recorded notes |
+| `play_notes` | Plays back recorded notes with sine wave synthesis |
+| `stop_playback` | Stops current playback |
+| `play_note_preview` | Plays a short preview of a single note |
+
+### Frontend Components
+
+- `src/types/midi.ts` - TypeScript interfaces for MIDI types
+- `src/hooks/useMidiDevices.ts` - Hook for fetching MIDI devices
+- `src/components/MidiDeviceSelector.tsx` - Dropdown for selecting MIDI input
+- `src/components/NoteVisualization.tsx` - Displays recorded/active notes on track
+
+### Key Dependencies
+
+- `midir` (Rust) - Cross-platform MIDI I/O
+- `rodio` (Rust) - Audio playback and synthesis
+- `@tauri-apps/api/event` - For real-time MIDI note events from backend
