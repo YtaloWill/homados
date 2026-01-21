@@ -76,6 +76,30 @@
   color: black;
 }
 
+.record-btn.active {
+  background-color: var(--record-active, #cc4444);
+  color: white;
+  animation: record-pulse 1s ease-in-out infinite;
+}
+
+.record-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+@keyframes record-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.audio-track.recording {
+  border-left: 3px solid var(--record-active, #cc4444);
+}
+
 .track-volume {
   width: 100%;
   height: 4px;
