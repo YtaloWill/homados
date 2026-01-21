@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Toolbar } from "./components/Toolbar";
 import { Timeline } from "./components/Timeline";
 import { TrackList, Track } from "./components/TrackList";
+import { useMidiDevices } from "./hooks/useMidiDevices";
 import "./App.css";
 
 const TRACK_COLORS = [
@@ -22,6 +23,7 @@ function App() {
     { id: "1", name: "Audio Track 1", color: TRACK_COLORS[0], muted: false, solo: false, volume: 80 },
     { id: "2", name: "Audio Track 2", color: TRACK_COLORS[1], muted: false, solo: false, volume: 75 },
   ]);
+  const { devices: midiDevices } = useMidiDevices();
 
   const handlePlay = () => {
     setIsPlaying(true);
@@ -79,6 +81,14 @@ function App() {
     );
   };
 
+  const handleMidiInputChange = (trackId: string, deviceId: string | undefined) => {
+    setTracks(
+      tracks.map((track) =>
+        track.id === trackId ? { ...track, midiInputDeviceId: deviceId } : track
+      )
+    );
+  };
+
   return (
     <div className="daw-container">
       <Toolbar
@@ -92,9 +102,11 @@ function App() {
       <Timeline duration={120} currentTime={currentTime} zoom={30} />
       <TrackList
         tracks={tracks}
+        midiInputDevices={midiDevices.inputs}
         onMuteToggle={handleMuteToggle}
         onSoloToggle={handleSoloToggle}
         onVolumeChange={handleVolumeChange}
+        onMidiInputChange={handleMidiInputChange}
       />
     </div>
   );

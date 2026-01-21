@@ -1,3 +1,5 @@
+import { MidiDevice } from "../types/midi";
+import { MidiDeviceSelector } from "./MidiDeviceSelector";
 import "./AudioTrack.css";
 
 interface AudioTrackProps {
@@ -7,9 +9,12 @@ interface AudioTrackProps {
   muted: boolean;
   solo: boolean;
   volume: number; // 0-100
+  midiInputDeviceId?: string;
+  midiInputDevices: MidiDevice[];
   onMuteToggle: (id: string) => void;
   onSoloToggle: (id: string) => void;
   onVolumeChange: (id: string, volume: number) => void;
+  onMidiInputChange: (trackId: string, deviceId: string | undefined) => void;
 }
 
 export function AudioTrack({
@@ -19,9 +24,12 @@ export function AudioTrack({
   muted,
   solo,
   volume,
+  midiInputDeviceId,
+  midiInputDevices,
   onMuteToggle,
   onSoloToggle,
   onVolumeChange,
+  onMidiInputChange,
 }: AudioTrackProps) {
   return (
     <div className={`audio-track ${muted ? "muted" : ""}`}>
@@ -52,6 +60,11 @@ export function AudioTrack({
           value={volume}
           onChange={(e) => onVolumeChange(id, parseInt(e.target.value))}
           title={`Volume: ${volume}%`}
+        />
+        <MidiDeviceSelector
+          devices={midiInputDevices}
+          selectedDeviceId={midiInputDeviceId}
+          onDeviceChange={(deviceId) => onMidiInputChange(id, deviceId)}
         />
       </div>
       <div className="track-content">
